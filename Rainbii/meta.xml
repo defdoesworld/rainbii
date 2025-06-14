@@ -2,7 +2,7 @@
 <app version="1">
 	<name>Rainbii</name>
 	<version>1.0</version>
-	<release_date></release_date>
+	<release_date>20250614000000</release_date>
 	<coder>Def64</coder>
 	<short_description>Rainbii - Fading Rainbow colors</short_description>
 	<long_description>Rainbii - Fading Rainbow colors. Special thanks to GRRLIB for the library. Rainbii is a app for the wii that fades in through different colors.</long_description>
