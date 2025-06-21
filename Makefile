@@ -107,12 +107,12 @@ export OUTPUT	:=	$(CURDIR)/$(TARGET)
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
-
+	@echo Enjoy Rainbii!
 #---------------------------------------------------------------------------------
 clean:
-	@echo clean ...
+	@echo cleaned! ...
 	@rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
-
+	
 #---------------------------------------------------------------------------------
 run:
 	wiiload $(TARGET).dol
