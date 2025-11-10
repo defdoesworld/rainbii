@@ -1,9 +1,8 @@
 #include <grrlib.h>
+
 #include <stdlib.h>
 #include <wiiuse/wpad.h>
 #define COLOR_COUNT 6
-#define FADE_SPEED 0.005f
-
 typedef struct {
     u8 r, g, b;
 } color;
@@ -29,6 +28,7 @@ int main(int argc, char **argv) {
     int next = 1;
     float t = 0.0f;
     bool fadeout = false;
+    float Fadespeed = 0.005f; //changed the fade speed into a float variable
 
     while (!fadeout) {
         WPAD_ScanPads();
@@ -36,9 +36,18 @@ int main(int argc, char **argv) {
 
         if (pressed & WPAD_BUTTON_HOME) {
             fadeout = true;
+            Fadespeed == 0.005f;
             break;
         }
-
+        if (WPAD_ButtonsDown(0) & WPAD_BUTTON_PLUS) { //increase speed
+        Fadespeed += 0.005f;
+        }
+        if (WPAD_ButtonsDown(0) & WPAD_BUTTON_MINUS) { //decrease speed
+        Fadespeed -= 0.005f;
+        }
+    if (Fadespeed == 0.000f) {
+        Fadespeed += 0.005f;
+    }
         color c1 = colors[current];
         color c2 = colors[next];
 
@@ -49,7 +58,7 @@ int main(int argc, char **argv) {
         GRRLIB_FillScreen(RGBA(r, g, b, 255));
         GRRLIB_Render();
 
-        t += FADE_SPEED;
+        t += Fadespeed;
 
         if (t >= 1.0f) {
             t = 0.0f;
@@ -68,7 +77,8 @@ int main(int argc, char **argv) {
 
         GRRLIB_FillScreen(RGBA(r, g, b, 255));
         GRRLIB_Render();
-        t += FADE_SPEED;
+        t += Fadespeed;
+        
     }
 
     GRRLIB_Exit();
